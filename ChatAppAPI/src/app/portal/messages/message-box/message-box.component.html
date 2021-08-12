@@ -1,0 +1,7 @@
+<div class="message-box container">
+  <div *ngFor="let message of messages">
+    <h5 id="username-text">{{ message.username }}</h5>
+    <h5>{{ message.message }}</h5>
+  </div>
+</div>
+<app-message-input></app-message-input>
