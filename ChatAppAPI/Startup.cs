@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChatAppAPI
 {
@@ -26,7 +28,9 @@ namespace ChatAppAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
+            services.AddDbContext<ChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ChatContext")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -47,16 +51,28 @@ namespace ChatAppAPI
 
                 c.RoutePrefix = string.Empty;
             });
-            if (env.IsDevelopment())
+
+            app.UseSpa(spa =>
             {
-                app.UseDeveloperExceptionPage();
-            }
+                spa.Options.SourcePath = "Client";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
+            });
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+
 
             app.UseEndpoints(endpoints =>
             {
