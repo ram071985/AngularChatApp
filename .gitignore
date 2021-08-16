@@ -3,6 +3,7 @@
 # compiled output
 /dist
 obj
+.vs
 bin
 /tmp
 /out-tsc
