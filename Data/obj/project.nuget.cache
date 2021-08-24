@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZuQH8fYoo3EPKmUN8mehxIC8dFoqXhq5k76vEjwrH7QFOohaN+/fFkr6k8YXvGpej/0xktTujXIdXtxCL6xDcQ==",
+  "dgSpecHash": "bbau08IjejELAHiM6zXdg/buB0CLJp2UzbJRE6JhAhVx4wPODgHOdX/Y2l9PV1x0/2dl6WOQcXEcAtZxA1BSDA==",
   "success": true,
   "projectFilePath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\Data.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\5.0.9\\microsoft.entityframeworkcore.inmemory.5.0.9.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.9\\microsoft.entityframeworkcore.relational.5.0.9.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.9\\microsoft.entityframeworkcore.sqlserver.5.0.9.nupkg.sha512",
+    "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.9\\microsoft.entityframeworkcore.tools.5.0.9.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

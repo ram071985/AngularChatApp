@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MessageService } from '../message.service';
 import { Message } from '../models/message.model';
 import { NgForm } from '@angular/forms';
@@ -10,17 +10,23 @@ import { NgForm } from '@angular/forms';
   providers: []
 })
 export class MessageBoxComponent implements OnInit {
-  messages: Message[] = [];
+  @Input() messageList: Message[] = [];
+  @Output() messageSubmit = new EventEmitter<string>();
+  
  
   constructor(private messageService: MessageService) {
   }
 
   ngOnInit(): void {
-    console.log(this.messages);
-    this.messages = this.messageService.messages;
+    console.log("Child-messages", this.messageList);
+  //  this.messages = this.messageService.messages;
     // this.clearValues();
   }
-
+  addMessage(form: NgForm) {
+    const value = form.value.messageInputText;
+    console.log()
+    this.messageSubmit.emit(value);
+   }
   // clearValues() {
   //   this.messageInputText = '';
   // }
