@@ -10,9 +10,11 @@ import { MessageBoxComponent } from './messages/message-box/message-box.componen
 import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MessageInputComponent } from './messages/message-input/message-input.component';
+import { PortalComponent } from './portal/portal.component';
 
 @NgModule({
   declarations: [
+    PortalComponent,
     AppComponent,
     AuthComponent,
     UsersComponent,

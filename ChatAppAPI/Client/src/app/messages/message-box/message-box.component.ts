@@ -26,6 +26,11 @@ export class MessageBoxComponent implements OnInit {
     const value = form.value.messageInputText;
     console.log()
     this.messageSubmit.emit(value);
+    this.onCreatePosts({ UserId: 1, Text: "Hey"})
+   }
+
+   onCreatePosts(postData: { UserId: number; Text: string }) {
+    console.log(postData);
    }
   // clearValues() {
   //   this.messageInputText = '';
