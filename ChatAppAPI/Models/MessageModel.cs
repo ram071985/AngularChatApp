@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ChatAppAPI.Models
 {
-    public class MessagesModel
+    public class MessageModel
     {
         public int Id { get; set; }
         public int UserId { get; set; }

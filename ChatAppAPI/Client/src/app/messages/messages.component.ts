@@ -19,4 +19,6 @@ messageList: Message[] = [new Message('reid', 'yo', new Date())];
     this.messageList.push(new Message('reid', newMessage, new Date()));
    }
 
+
+
 }

@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MessageInputComponent } from './messages/message-input/message-input.component';
 import { PortalComponent } from './portal/portal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,15 @@ import { PortalComponent } from './portal/portal.component';
     MessagesComponent,
     MessageBoxComponent,
     MessageInputComponent,
+    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatInputModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

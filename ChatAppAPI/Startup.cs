@@ -28,7 +28,6 @@ namespace ChatAppAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddDbContext<ChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ChatContext")));
             services.AddSwaggerGen(c =>
@@ -51,28 +50,16 @@ namespace ChatAppAPI
 
                 c.RoutePrefix = string.Empty;
             });
-
-            app.UseSpa(spa =>
+            if (env.IsDevelopment())
             {
-                spa.Options.SourcePath = "Client";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                }
-            });
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-
 
             app.UseEndpoints(endpoints =>
             {

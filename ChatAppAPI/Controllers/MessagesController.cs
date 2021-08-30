@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChatAppAPI.Models;
+using Data.Context;
+using Data.Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +13,30 @@ namespace ChatAppAPI.Controllers
     [Route("[Controller]")]
     public class MessagesController : ControllerBase
     {
+        private readonly ChatContext _db;
+
+        public MessagesController(ChatContext db)
+        {
+            _db = db;
+        }
+
         [HttpPost]
-        public IActionResult AddMessage()
+        public IActionResult AddMessage([FromBody] MessageModel messageModel)
         {
             try
             {
-                return Ok();
+                var message = new Message();
+                message.UserId = 1;
+                message.Text = messageModel.Text;
+                message.DateCreated = DateTime.Now;
+                _db.Messages.Add(message);
+                _db.SaveChanges();
+
+                return Ok(message);
             }
-            catch
+            catch(Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
     }
