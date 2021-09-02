@@ -5,20 +5,17 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-messageList: Message[] = [new Message('reid', 'yo', new Date())];
-  constructor() { }
+  messageList: Message[] = [new Message(1, 'reid', 'yo', new Date())];
+  constructor() {}
 
   ngOnInit(): void {
-    console.log("Parent", this.messageList);
+    console.log('Parent', this.messageList);
   }
 
   addMessage(newMessage: string) {
-    this.messageList.push(new Message('reid', newMessage, new Date()));
-   }
-
-
-
+    this.messageList.push(new Message(1, 'reid', newMessage, new Date()));
+  }
 }

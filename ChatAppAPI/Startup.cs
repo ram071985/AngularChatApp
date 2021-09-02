@@ -29,6 +29,7 @@ namespace ChatAppAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddDbContext<ChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ChatContext")));
             services.AddSwaggerGen(c =>
             {
@@ -38,6 +39,18 @@ namespace ChatAppAPI
                     Version = "v1"
                 });
 
+            });
+
+            var allowedOrigins = Configuration.GetValue<string>("AllowedOrigins").Split(",").Select(x => x.Trim()).ToArray();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins(allowedOrigins)
+                  .AllowAnyMethod()
+                  .AllowAnyHeader()
+                  .AllowCredentials());
             });
         }
 

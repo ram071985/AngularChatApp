@@ -2,7 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MessageService } from '../message.service';
 import { Message } from '../models/message.model';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-message-box',
@@ -13,6 +14,13 @@ import { HttpClient } from '@angular/common/http';
 export class MessageBoxComponent implements OnInit {
   @Input() messageList: Message[] = [];
   @Output() messageSubmit = new EventEmitter<string>();
+
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
+    })
+  };
 
   constructor(
     private messageService: MessageService,
@@ -28,16 +36,20 @@ export class MessageBoxComponent implements OnInit {
     const value = form.value.messageInputText;
     console.log();
     this.messageSubmit.emit(value);
-    this.onCreatePosts({ UserId: 1, Text: value, DateCreated: new Date() });
+    this.onCreatePosts({
+      userId: 1,
+      username: 'admin',
+      message: value,
+      dateCreated: new Date(),
+    });
   }
 
-  onCreatePosts(postData: { UserId: number; Text: string; DateCreated: Date }) {
-    console.log('Hey');
-    this.http
-      .post('https://localhost:5001/Messages', postData)
-      .subscribe((response) => {
-        console.log(response);
-      });
+  onCreatePosts(message: Message): Observable<Message> {
+    return this.http.post<Message>(
+      'https://localhost:5001/Messages',
+      message,
+      this.options
+    );
   }
   // clearValues() {
   //   this.messageInputText = '';
