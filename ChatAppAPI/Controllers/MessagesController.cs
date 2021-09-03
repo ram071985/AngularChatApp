@@ -20,6 +20,21 @@ namespace ChatAppAPI.Controllers
             _db = db;
         }
 
+        [HttpGet]
+        public IActionResult GetMessages()
+        {
+            try
+            {
+                var response = _db.Messages.ToList();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
+
         [HttpPost]
         public IActionResult AddMessage([FromBody] MessageModel messageModel)
         {
@@ -34,7 +49,7 @@ namespace ChatAppAPI.Controllers
 
                 return Ok(message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from './models/message.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -8,11 +9,27 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messageList: Message[] = [new Message(1, 'yo', new Date())];
-  constructor() {}
+  messageList: Message[] = [];
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+    }),
+  };
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    console.log('Parent', this.messageList);
+    this.getMessages();
+    console.log(this.messageList)
+  }
+
+  getMessages() {
+    return this.http
+      .get<Message[]>('https://localhost:5001/Messages', this.httpOptions)
+      .subscribe((response) => {
+        this.messageList = response;
+      });
   }
 
   addMessage(newMessage: string) {
