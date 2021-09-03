@@ -63,6 +63,9 @@ namespace ChatAppAPI
 
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

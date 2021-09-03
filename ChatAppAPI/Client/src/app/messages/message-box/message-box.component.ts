@@ -38,18 +38,19 @@ export class MessageBoxComponent implements OnInit {
     this.messageSubmit.emit(value);
     this.onCreatePosts({
       userId: 1,
-      username: 'admin',
-      message: value,
+      text: value,
       dateCreated: new Date(),
     });
   }
 
-  onCreatePosts(message: Message): Observable<Message> {
-    return this.http.post<Message>(
+  onCreatePosts(message: Message) {
+    this.http.post<Message>(
       'https://localhost:5001/Messages',
       message,
-      this.options
-    );
+      this.httpOptions
+    ).subscribe((response) => {
+      console.log(response);
+    });
   }
   // clearValues() {
   //   this.messageInputText = '';

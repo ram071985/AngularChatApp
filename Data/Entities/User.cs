@@ -8,6 +8,7 @@ namespace Data.Entities
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public DateTime CreatedData { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string Password { get; set; }
     }
 }

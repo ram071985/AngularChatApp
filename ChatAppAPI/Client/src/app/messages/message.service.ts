@@ -8,7 +8,7 @@ export class MessageService {
     console.log(this.messages);
     const value = form.value;
     this.messages.push(
-      new Message(1, 'reid', value.messageInputText, new Date())
+      new Message(1, value.messageInputText, new Date())
     );
   }
 }

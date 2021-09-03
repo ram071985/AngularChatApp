@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messageList: Message[] = [new Message(1, 'reid', 'yo', new Date())];
+  messageList: Message[] = [new Message(1, 'yo', new Date())];
   constructor() {}
 
   ngOnInit(): void {
@@ -16,6 +16,6 @@ export class MessagesComponent implements OnInit {
   }
 
   addMessage(newMessage: string) {
-    this.messageList.push(new Message(1, 'reid', newMessage, new Date()));
+    this.messageList.push(new Message(1, newMessage, new Date()));
   }
 }
