@@ -28,13 +28,11 @@ export class MessageBoxComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Child-messages', this.messageList);
     //  this.messages = this.messageService.messages;
     // this.clearValues();
   }
   addMessage(form: NgForm) {
     const value = form.value.messageInputText;
-    console.log();
     this.messageSubmit.emit(value);
     this.onCreatePosts({
       userId: 1,

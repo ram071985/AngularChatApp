@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .auth-container {
+    display: flex;
+    border: 1px solid black;
+    height: 475px;
+    width: 350px;
+    align-items: center;
+    justify-content: center;
+
+    .user-entry {
+        
+      .log-in-text {
+        font-weight: 600;
+      }
+      .example-full-width {
+        width: 100%;
+      }
+    }
+  }
+}
