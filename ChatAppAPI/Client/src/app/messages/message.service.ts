@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Message } from './models/message.model';
+import { Message } from '../models/message.model';
 
 export class MessageService {
   messages: Message[] = [];

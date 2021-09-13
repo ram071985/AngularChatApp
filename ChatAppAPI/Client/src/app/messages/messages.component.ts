@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Message } from './models/message.model';
+import { Message } from '../models/message.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 

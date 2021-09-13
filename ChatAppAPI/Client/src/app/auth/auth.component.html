@@ -1,16 +1,18 @@
 <div class="container main">
   <div class="container auth-container">
     <div class="container user-entry">
-      <h1 class="log-in-text">Log In</h1>
+      <h1 class="log-in-text">Sign Up</h1>
 
-      <form class="example-form">
+      <form (ngSubmit)="registerUser(f)" #f="ngForm" class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Username</mat-label>
           <input
             type="email"
             matInput
             [formControl]="emailFormControl"
+            name="usernameInput"
             placeholder="Ex. pat@example.com"
+            ngModel
           />
           <mat-error
             *ngIf="
@@ -24,13 +26,19 @@
             Username is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field class="example-full-width" id="password" appearance="fill">
+        <mat-form-field
+          class="example-full-width"
+          id="password"
+          appearance="fill"
+        >
           <mat-label>Password</mat-label>
           <input
             type="email"
             matInput
+            name="passwordInput"
             [formControl]="emailFormControl"
             placeholder="Ex. pat@example.com"
+            ngModel
           />
           <mat-error
             *ngIf="
@@ -44,7 +52,9 @@
             Password is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <button class="sign-in" color="primary" mat-raised-button><span class="sign-in-text">Sign In</span></button>
+        <button type="submit" class="sign-in" color="primary" mat-raised-button>
+          <span class="sign-in-text">Sign In</span>
+        </button>
       </form>
     </div>
   </div>
