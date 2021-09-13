@@ -9,6 +9,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessageBoxComponent } from './messages/message-box/message-box.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatButton, MatButtonModule} from '@angular/material/button';
 import { MessageInputComponent } from './messages/message-input/message-input.component';
 import { PortalComponent } from './portal/portal.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
