@@ -24,10 +24,8 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {}
 
   registerUser(form: NgForm) {
-
     const usernameValue = form.value.usernameInput;
     const passwordValue = form.value.passwordInput;
-    console.log(usernameValue)
     this.createUser({
       username: usernameValue,
       password: passwordValue,
@@ -35,7 +33,7 @@ export class AuthComponent implements OnInit {
   }
 
   createUser(user: User) {
-    console.log("click")
+    console.log(user)
     this.http
       .post<User>('https://localhost:5001/Users', user, this.httpOptions)
       .subscribe((response) => {

@@ -7,24 +7,24 @@
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Username</mat-label>
           <input
-            type="email"
+            type="text"
             matInput
-            [formControl]="emailFormControl"
+
             name="usernameInput"
             placeholder="Ex. pat@example.com"
             ngModel
           />
-          <mat-error
+          <!-- <mat-error
             *ngIf="
               emailFormControl.hasError('email') &&
               !emailFormControl.hasError('required')
             "
           >
             Please enter a valid username
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Username is <strong>required</strong>
-          </mat-error>
+          </mat-error> -->
+          <!-- <mat-error *ngIf="emailFormControl.hasError('required')"> -->
+            <!-- Username is <strong>required</strong>
+          </mat-error> -->
         </mat-form-field>
         <mat-form-field
           class="example-full-width"
@@ -33,24 +33,24 @@
         >
           <mat-label>Password</mat-label>
           <input
-            type="email"
+            type="text"
             matInput
             name="passwordInput"
-            [formControl]="emailFormControl"
+         
             placeholder="Ex. pat@example.com"
             ngModel
           />
-          <mat-error
+          <!-- <mat-error
             *ngIf="
               emailFormControl.hasError('email') &&
               !emailFormControl.hasError('required')
             "
           >
             Please enter a valid password
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
+          </mat-error> -->
+          <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
             Password is <strong>required</strong>
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
         <button type="submit" class="sign-in" color="primary" mat-raised-button>
           <span class="sign-in-text">Sign In</span>

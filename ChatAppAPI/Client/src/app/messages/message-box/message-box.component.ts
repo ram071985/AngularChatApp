@@ -32,7 +32,7 @@ export class MessageBoxComponent implements OnInit {
 
   addMessage(form: NgForm) {
     const value = form.value.messageInputText;
-    this.messageSubmit.emit(value);
+    // this.messageSubmit.emit(value);
     this.onCreatePosts({
       userId: 1,
       text: value,

@@ -1,4 +1,7 @@
-﻿using Data.Context;
+﻿
+using ChatAppAPI.Models;
+using Data.Context;
+using Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,11 +22,18 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddUser()
+        public IActionResult AddUser([FromBody] UserModel userModel)
         {
             try
             {
-                return Ok();
+                var user = new User();
+                user.Username = userModel.Username;
+                user.Password = userModel.Password;
+                user.CreatedDate = DateTime.Now;
+                _db.Users.Add(user);
+                _db.SaveChanges();
+
+                return Ok(user);
             }
             catch (Exception ex)
             {
