@@ -1,7 +1,7 @@
 <div class="container main">
   <div class="container auth-container">
     <div class="container user-entry">
-      <h1 class="log-in-text">Sign Up</h1>
+      <h1 class="log-in-text">{{ isLoginMode ? "Sign In" : "Sign Up" }}</h1>
 
       <form (ngSubmit)="registerUser(f)" #f="ngForm" class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
@@ -9,7 +9,6 @@
           <input
             type="text"
             matInput
-
             name="usernameInput"
             placeholder="Ex. pat@example.com"
             ngModel
@@ -23,7 +22,7 @@
             Please enter a valid username
           </mat-error> -->
           <!-- <mat-error *ngIf="emailFormControl.hasError('required')"> -->
-            <!-- Username is <strong>required</strong>
+          <!-- Username is <strong>required</strong>
           </mat-error> -->
         </mat-form-field>
         <mat-form-field
@@ -36,7 +35,6 @@
             type="text"
             matInput
             name="passwordInput"
-         
             placeholder="Ex. pat@example.com"
             ngModel
           />
@@ -53,7 +51,20 @@
           </mat-error> -->
         </mat-form-field>
         <button type="submit" class="sign-in" color="primary" mat-raised-button>
-          <span class="sign-in-text">Sign In</span>
+          <span class="sign-in-text">{{
+            isLoginMode ? "Login" : "Register"
+          }}</span>
+        </button>
+        <button
+          (click)="onSwitchMode()"
+          type="submit"
+          class="sign-in"
+          color="primary"
+          mat-raised-button
+        >
+          <span class="sign-in-text">{{
+            isLoginMode ? "Switch To Register" : "Switch To Login"
+          }}</span>
         </button>
       </form>
     </div>

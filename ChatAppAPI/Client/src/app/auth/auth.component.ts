@@ -9,6 +9,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
+
+  isLoginMode = true;
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -20,6 +23,10 @@ export class AuthComponent implements OnInit {
     }),
   };
   constructor(private http: HttpClient) {}
+
+  onSwitchMode() {
+    this.isLoginMode = !this.isLoginMode;
+  }
 
   ngOnInit(): void {}
 
