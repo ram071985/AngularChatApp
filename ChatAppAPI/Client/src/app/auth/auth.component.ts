@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { User } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,9 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-
   isLoginMode = true;
-
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -22,7 +21,7 @@ export class AuthComponent implements OnInit {
       'Access-Control-Allow-Origin': 'http://localhost:4200',
     }),
   };
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -31,21 +30,37 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
     const usernameValue = form.value.usernameInput;
     const passwordValue = form.value.passwordInput;
     this.createUser({
       username: usernameValue,
       password: passwordValue,
     });
+    
+    if (this.isLoginMode) {
+    } else {
+      this.authService
+        .signup({
+          username: usernameValue,
+          password: passwordValue,
+        })
+        .subscribe((resData) => {
+          console.log(resData);
+        });
+    }
+
     form.reset();
   }
 
   createUser(user: User) {
-    console.log(user)
+    console.log(user);
     this.http
       .post<User>('https://localhost:5001/Users', user, this.httpOptions)
       .subscribe((response) => {
-        console.log("User register", response);
+        console.log('User register', response);
       });
   }
 }
