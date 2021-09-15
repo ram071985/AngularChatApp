@@ -30,13 +30,14 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registerUser(form: NgForm) {
+  onSubmit(form: NgForm) {
     const usernameValue = form.value.usernameInput;
     const passwordValue = form.value.passwordInput;
     this.createUser({
       username: usernameValue,
       password: passwordValue,
     });
+    form.reset();
   }
 
   createUser(user: User) {
