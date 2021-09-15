@@ -1,4 +1,4 @@
-import { UserAuthBase } from '../shared/user-auth-base';
+import { UserAuthBase } from '../shared/security/user-auth-base';
 
 export class AppUserAuth extends UserAuthBase {
   canAccessChat: boolean = false;
