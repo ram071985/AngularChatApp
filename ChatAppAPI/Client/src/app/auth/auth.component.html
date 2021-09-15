@@ -1,9 +1,16 @@
 <div class="container main">
+  <div class="d-block">
+    <label>{{ securityObject | json }}</label>
+  </div>
   <div class="container auth-container">
     <div class="container user-entry">
       <h1 class="log-in-text">{{ isLoginMode ? "Sign In" : "Sign Up" }}</h1>
 
-      <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm" class="example-form">
+      <form
+        (ngSubmit)="login(authForm)"
+        #authForm="ngForm"
+        class="example-form"
+      >
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Username</mat-label>
           <input
@@ -53,7 +60,13 @@
             Password is <strong>required</strong>
           </mat-error> -->
         </mat-form-field>
-        <button type="submit" class="sign-in" [disabled]="!authForm.valid" color="primary" mat-raised-button>
+        <button
+          type="submit"
+          class="sign-in"
+          [disabled]="!authForm.valid"
+          color="primary"
+          mat-raised-button
+        >
           <span class="sign-in-text">{{
             isLoginMode ? "Login" : "Register"
           }}</span>

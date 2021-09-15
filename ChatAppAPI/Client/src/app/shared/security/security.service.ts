@@ -29,4 +29,8 @@ export class SecurityService {
 
     return of(this.securityObject);
   }
+
+  logout(): void {
+    this.securityObject.init()
+  }
 }
