@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Data.Entities
 {
-    public partial class Message
+    public partial class Messages
     {
         public int Id { get; set; }
         public int UserId { get; set; }
         public string Text { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

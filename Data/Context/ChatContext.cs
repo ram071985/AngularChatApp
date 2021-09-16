@@ -17,8 +17,8 @@ namespace Data.Context
             _config = config;
         }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Messages> Messages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,9 +32,9 @@ namespace Data.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Message>();
+            modelBuilder.Entity<Messages>();
 
-            modelBuilder.Entity<User>();
+            modelBuilder.Entity<Users>();
                
         }
     }
