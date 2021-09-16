@@ -16,4 +16,10 @@ export class AppComponent {
   constructor(private securityService: SecurityService) {
     this.securityObject = securityService.securityObject;
   }
+
+  logout(): void {
+    this.securityService.logout();
+    this.securityObject = this.securityService.securityObject;
+    localStorage.removeItem('AuthObject');
+  }
 }
