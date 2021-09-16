@@ -64,6 +64,12 @@ export class AuthComponent implements OnInit {
       });
   }
 
+  logout(): void {
+    this.securityService.logout();
+    this.securityObject = this.securityService.securityObject;
+    localStorage.removeItem('AuthObject');
+  }
+
   onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
