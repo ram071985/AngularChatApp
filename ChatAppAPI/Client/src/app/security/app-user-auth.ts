@@ -8,4 +8,9 @@ export class AppUserAuth extends UserAuthBase {
 
     this.canAccessChat = false;
   }
+
+  getValueOfProperty(obj: any, key: string): boolean {
+    let ret = obj[key];
+    return ret;
+  }
 }

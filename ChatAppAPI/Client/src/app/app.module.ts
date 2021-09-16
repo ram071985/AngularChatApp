@@ -14,6 +14,7 @@ import { MessageInputComponent } from './messages/message-input/message-input.co
 import { PortalComponent } from './portal/portal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const appRoutes: Routes = [
   {
@@ -23,6 +24,8 @@ const appRoutes: Routes = [
   {
     path: '',
     component: PortalComponent,
+    canActivate: [AuthGuard],
+    data: { claimType: 'canAccessChat'}
   },
 ];
 @NgModule({
