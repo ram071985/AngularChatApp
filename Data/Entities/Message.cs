@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Data.Entities
 {
-    public partial class Messages
+    public partial class Message
     {
         public int Id { get; set; }
         public int UserId { get; set; }

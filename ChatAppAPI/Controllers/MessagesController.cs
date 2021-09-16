@@ -40,7 +40,7 @@ namespace ChatAppAPI.Controllers
         {
             try
             {
-                var message = new Messages();
+                var message = new Message();
                 message.UserId = 1;
                 message.Text = messageModel.Text;
                 message.DateCreated = DateTime.Now;

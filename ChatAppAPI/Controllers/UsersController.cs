@@ -26,7 +26,7 @@ namespace ChatAppAPI.Controllers
         {
             try
             {
-                var user = new Users();
+                var user = new User();
                 user.Username = userModel.Username;
                 user.Password = userModel.Password;
                 user.CreatedDate = DateTime.Now;
