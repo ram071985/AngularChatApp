@@ -48,7 +48,10 @@ export class AuthComponent implements OnInit {
     this.securityObject?.init();
     this.securityService
       .login({ username: usernameValue, password: passwordValue })
-      .subscribe((res) => (this.securityObject = res));
+      .subscribe((res) => {
+        localStorage.setItem('AuthObject', JSON.stringify(res));
+        this.securityObject = res;
+      });
   }
 
   onSubmit(form: NgForm) {
