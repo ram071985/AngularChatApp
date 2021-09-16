@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { AppUser } from '../security/app-user';
 import { AppUserAuth } from '../security/app-user-auth';
 import { SecurityService } from '../shared/security/security.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -16,6 +17,7 @@ export class AuthComponent implements OnInit {
   isLoginMode = true;
   user: AppUser = new AppUser();
   securityObject: AppUserAuth | undefined;
+  returnUrl: string | undefined;
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -30,10 +32,14 @@ export class AuthComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl')!;
+  }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -51,6 +57,10 @@ export class AuthComponent implements OnInit {
       .subscribe((res) => {
         localStorage.setItem('AuthObject', JSON.stringify(res));
         this.securityObject = res;
+
+        if (this.returnUrl) {
+          this.router.navigateByUrl(this.returnUrl);
+        }
       });
   }
 
