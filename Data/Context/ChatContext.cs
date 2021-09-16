@@ -19,7 +19,8 @@ namespace Data.Context
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
-        public virtual DbSet<UserClaim> UserClaims { get; set; }
+        public DbSet<UserClaim> UserClaims { get; set; }
+        public DbSet<UserBase> UserBases { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
