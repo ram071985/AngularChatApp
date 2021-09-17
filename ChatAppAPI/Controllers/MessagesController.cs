@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace ChatAppAPI.Controllers
 {
+    
+    [Route("[controller]")]
     [ApiController]
-    [Route("[Controller]")]
     public class MessagesController : ControllerBase
     {
         private readonly ChatContext _db;

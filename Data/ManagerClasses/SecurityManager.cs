@@ -18,14 +18,28 @@ namespace Data.ManagerClasses
         private ChatContext _db = null;
         private UserAuthBase _auth = null;
 
-        protected UserAuthBase BuildUserAuthObject(Guid userId, string userName)
+        public UserAuthBase ValidateUser(string username, string password)
+        {
+            List<UserBase> list = new List<UserBase>();
+
+            try
+            {
+                list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower()).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception while trying to retrieve user.", ex);
+            }
+            return _auth;
+        }
+        protected UserAuthBase BuildUserAuthObject(Guid userId, string username)
         {
             List<UserClaim> claims = new List<UserClaim>();
             Type _authType = _auth.GetType();
 
             // Set User Properties
             _auth.UserId = userId;
-            _auth.UserName = userName;
+            _auth.UserName = username;
             _auth.IsAuthenticated = true;
 
             // Get all claims for this user
