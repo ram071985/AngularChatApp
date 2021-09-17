@@ -30,7 +30,7 @@ namespace ChatAppAPI.Controllers
                 user.Username = userModel.Username;
                 user.Password = userModel.Password;
                 user.CreatedDate = DateTime.Now;
-                _db.Users.Add(user);
+             //   _db.Users.Add(user);
                 _db.SaveChanges();
 
                 return Ok(user);

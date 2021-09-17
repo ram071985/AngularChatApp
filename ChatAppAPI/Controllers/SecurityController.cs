@@ -25,7 +25,7 @@ namespace ChatAppAPI.Controllers
             _logger = logger;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public IActionResult Login([FromBody] AppUser user)
         {
             IActionResult ret = null;
