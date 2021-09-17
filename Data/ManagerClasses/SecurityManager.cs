@@ -18,6 +18,38 @@ namespace Data.ManagerClasses
         private ChatContext _db = null;
         private UserAuthBase _auth = null;
 
+        protected UserAuthBase BuildUserAuthObject(Guid userId, string userName)
+        {
+            List<UserClaim> claims = new List<UserClaim>();
+            Type _authType = _auth.GetType();
+
+            // Set User Properties
+            _auth.UserId = userId;
+            _auth.UserName = userName;
+            _auth.IsAuthenticated = true;
+
+            // Get all claims for this user
+            claims = GetUserClaims(userId);
+
+            // Loop through all claims and 
+            // set properties of user object
+            foreach (UserClaim claim in claims)
+            {
+                try
+                {
+                    // Use reflection to set property
+                    _authType.GetProperty(claim.ClaimType)
+                        .SetValue(_auth, Convert.ToBoolean(claim.ClaimValue),
+                            null);
+                }
+                catch
+                {
+
+                }
+            }
+
+            return _auth;
+        }
         protected List<UserClaim> GetUserClaims(Guid userId)
         {
             List<UserClaim> list = new List<UserClaim>();

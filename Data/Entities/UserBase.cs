@@ -15,7 +15,7 @@ namespace Data.Entities
         [Key()]
         public Guid UserId { get; set; }
         [Required()]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [Required()]
         public string Password { get; set; }
         public DateTime CreatedDate { get; set; }
