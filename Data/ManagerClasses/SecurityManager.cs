@@ -25,6 +25,11 @@ namespace Data.ManagerClasses
             try
             {
                 list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower()).ToList();
+
+                if (list.Count() > 0)
+                {
+                    _auth = BuildUserAuthObject(list[0].UserId, username);
+                }
             }
             catch (Exception ex)
             {
@@ -56,9 +61,8 @@ namespace Data.ManagerClasses
                         .SetValue(_auth, Convert.ToBoolean(claim.ClaimValue),
                             null);
                 }
-                catch
+                catch (Exception ex)
                 {
-
                 }
             }
 
