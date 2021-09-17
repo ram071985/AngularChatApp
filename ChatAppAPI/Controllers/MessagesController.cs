@@ -1,6 +1,7 @@
 ﻿using ChatAppAPI.Models;
 using Data.Context;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChatAppAPI.Controllers
 {
-    
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase
@@ -22,6 +23,7 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetMessages()
         {
             try
@@ -37,6 +39,7 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddMessage([FromBody] MessageModel messageModel)
         {
             try

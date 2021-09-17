@@ -8,6 +8,8 @@ using System.Linq;
 using Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Data.Entities;
+using System;
 
 namespace ChatAppAPI
 {
@@ -64,7 +66,6 @@ namespace ChatAppAPI
                 c.RoutePrefix = string.Empty;
             });
 
-            app.UseCors("CorsPolicy");
 
             if (env.IsDevelopment())
             {
@@ -75,6 +76,12 @@ namespace ChatAppAPI
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
+            // Most likely a better alternative for handling CORS
+            //app.UseCors(options =>
+            //options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -84,6 +91,19 @@ namespace ChatAppAPI
                     pattern: "{controller}/{action=Index}/{id?}"
                     );
             });
+        }
+
+        public JwtSettings GetJwtSettings()
+        {
+            JwtSettings settings = new JwtSettings();
+
+            settings.Key = Configuration["JwtToken:key"];
+            settings.Audience = Configuration["JwtToken:audience"];
+            settings.MinutesToExpiration = Convert.ToInt32(
+                Configuration["JwtToken:minutestoexpiration"]);
+
+            return settings;
+
         }
     }
 }
