@@ -5749,32 +5749,34 @@
     ]
   },
   "packageFolders": {
-    "/Users/reid/.nuget/packages/": {}
+    "C:\\Users\\reid.muchow\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/reid/Desktop/Projects/AngularChatApp/Core/Core.csproj",
+      "projectUniqueName": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "/Users/reid/Desktop/Projects/AngularChatApp/Core/Core.csproj",
-      "packagesPath": "/Users/reid/.nuget/packages/",
-      "outputPath": "/Users/reid/Desktop/Projects/AngularChatApp/Core/obj/",
+      "projectPath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Core\\Core.csproj",
+      "packagesPath": "C:\\Users\\reid.muchow\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/reid/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\reid.muchow\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/reid/Desktop/Projects/AngularChatApp/Data/Data.csproj": {
-              "projectPath": "/Users/reid/Desktop/Projects/AngularChatApp/Data/Data.csproj"
+            "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\Data.csproj"
             }
           }
         }
@@ -5803,7 +5805,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100-preview.3.21202.5/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -47,7 +47,7 @@ namespace ChatAppAPI
             });
 
             var allowedOrigins = Configuration.GetValue<string>("AllowedOrigins").Split(",").Select(x => x.Trim()).ToArray();
-            
+
             services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -61,7 +61,7 @@ namespace ChatAppAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -70,33 +70,37 @@ namespace ChatAppAPI
                 c.RoutePrefix = string.Empty;
             });
 
-
+            app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+           
+            app.UseAuthentication();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
+         
             app.UseAuthorization();
 
-            app.UseCors("CorsPolicy");
+            
 
-            // Most likely a better alternative for handling CORS
+            //  Most likely a better alternative for handling CORS
+
             //app.UseCors(options =>
             //options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
-          
+
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}"
-                    );
-            });
+             {
+                 endpoints.MapControllerRoute(
+                      name: "default",
+                     pattern: "{controller}/{action=Index}/{id?}"
+                     );
+             });
         }
 
         public void ConfigureJwt(IServiceCollection services)
@@ -118,10 +122,10 @@ namespace ChatAppAPI
                         IssuerSigningKey = new SymmetricSecurityKey(
                             Encoding.UTF8.GetBytes(settings.Key)),
                         ValidateIssuer = true,
-                        ValidIssuer = Configuration["JwtToken:iss"],
+                        ValidIssuer = settings.Issuer,
 
                         ValidateAudience = true,
-                        ValidAudience = Configuration["JwtToken:audience"],
+                        ValidAudience = settings.Audience,
 
                         ValidateLifetime = true,
                         ClockSkew = TimeSpan.FromMinutes(
@@ -135,6 +139,7 @@ namespace ChatAppAPI
             JwtSettings settings = new JwtSettings();
 
             settings.Key = Configuration["JwtToken:key"];
+            settings.Issuer = Configuration["JwtToken:issuer"];
             settings.Audience = Configuration["JwtToken:audience"];
             settings.MinutesToExpiration = Convert.ToInt32(
                 Configuration["JwtToken:minutestoexpiration"]);
