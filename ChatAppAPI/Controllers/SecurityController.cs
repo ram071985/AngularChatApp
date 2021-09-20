@@ -19,10 +19,13 @@ namespace ChatAppAPI.Controllers
     {
         private readonly ChatContext _db;
         private readonly ILogger<SecurityController> _logger;
-        public SecurityController(ChatContext db, ILogger<SecurityController> logger)
+        private readonly JwtSettings _settings;
+
+        public SecurityController(ChatContext db, ILogger<SecurityController> logger, JwtSettings settings)
         {
             _db = db;
             _logger = logger;
+            _settings = settings;
         }
 
         [HttpPost("login")]
@@ -30,7 +33,7 @@ namespace ChatAppAPI.Controllers
         {
             IActionResult ret = null;
             AppUserAuth auth = new AppUserAuth();
-            SecurityManager mgr = new SecurityManager(_db, auth);
+            SecurityManager mgr = new SecurityManager(_db, auth, _settings);
 
             auth = (AppUserAuth)mgr.ValidateUser(user.Username, user.Password);
             if (auth.IsAuthenticated)

@@ -23,7 +23,7 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        
         public IActionResult GetMessages()
         {
             try
@@ -39,7 +39,7 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+   
         public IActionResult AddMessage([FromBody] MessageModel messageModel)
         {
             try

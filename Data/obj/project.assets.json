@@ -5827,26 +5827,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\reid.muchow\\.nuget\\packages\\": {}
+    "/Users/reid/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\Data.csproj",
+      "projectUniqueName": "/Users/reid/Desktop/Projects/AngularChatApp/Data/Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\reid.muchow\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Data\\obj\\",
+      "projectPath": "/Users/reid/Desktop/Projects/AngularChatApp/Data/Data.csproj",
+      "packagesPath": "/Users/reid/.nuget/packages/",
+      "outputPath": "/Users/reid/Desktop/Projects/AngularChatApp/Data/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\reid.muchow\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/reid/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5909,7 +5907,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100-preview.3.21202.5/RuntimeIdentifierGraph.json"
       }
     }
   }

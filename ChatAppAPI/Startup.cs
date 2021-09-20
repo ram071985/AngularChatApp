@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Data.Entities;
 using System;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ChatAppAPI
 {
@@ -24,6 +26,7 @@ namespace ChatAppAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureJwt(services);
             services.AddControllers();
             services.AddMvc()
      .AddNewtonsoftJson(
@@ -44,7 +47,7 @@ namespace ChatAppAPI
             });
 
             var allowedOrigins = Configuration.GetValue<string>("AllowedOrigins").Split(",").Select(x => x.Trim()).ToArray();
-
+            
             services.AddCors(options =>
             {
                 options.AddPolicy(
@@ -58,6 +61,7 @@ namespace ChatAppAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -75,6 +79,8 @@ namespace ChatAppAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseCors("CorsPolicy");
 
@@ -82,7 +88,7 @@ namespace ChatAppAPI
             //app.UseCors(options =>
             //options.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
-            app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {
@@ -91,6 +97,37 @@ namespace ChatAppAPI
                     pattern: "{controller}/{action=Index}/{id?}"
                     );
             });
+        }
+
+        public void ConfigureJwt(IServiceCollection services)
+        {
+            // Get JWT Token Settings from appsettings.json file
+            JwtSettings settings = GetJwtSettings();
+            services.AddSingleton<JwtSettings>(settings);
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "JwtBearer";
+                options.DefaultChallengeScheme = "JwtBearer";
+            })
+                .AddJwtBearer("JwtBearer", jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters =
+                    new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(settings.Key)),
+                        ValidateIssuer = true,
+                        ValidIssuer = Configuration["JwtToken:iss"],
+
+                        ValidateAudience = true,
+                        ValidAudience = Configuration["JwtToken:audience"],
+
+                        ValidateLifetime = true,
+                        ClockSkew = TimeSpan.FromMinutes(
+                            settings.MinutesToExpiration)
+                    };
+                });
         }
 
         public JwtSettings GetJwtSettings()
