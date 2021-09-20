@@ -23,11 +23,16 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMessages();
+    console.log(this.messageList)
   }
 
   getMessages() {
-    console.log(this.messageService.getMessages())
-   return this.messageService.getMessages();
+  //  console.log(this.messageService.getMessages())
+  return this.messageService.getMessages().subscribe((data: Message[]) => {
+     console.log(data);
+     this.messageList = data;
+   });
+    
   }
 
   addMessage(newMessage: string) {
