@@ -43,6 +43,6 @@ export class MessageService {
   addMessage(form: NgForm) {
     console.log(this.messages);
     const value = form.value;
-    this.messages.push(new Message(1, value.messageInputText, new Date()));
+    this.messages.push(new Message('1', value.messageInputText, new Date()));
   }
 }

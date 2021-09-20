@@ -36,7 +36,7 @@ export class MessagesComponent implements OnInit {
   }
 
   addMessage(newMessage: string) {
-    this.messageList.push(new Message(1, newMessage, new Date()));
+    this.messageList.push(new Message('1', newMessage, new Date()));
   }
 
 

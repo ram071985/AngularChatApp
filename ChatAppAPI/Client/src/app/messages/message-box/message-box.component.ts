@@ -38,7 +38,7 @@ export class MessageBoxComponent implements OnInit {
     const value = form.value.messageInputText;
     this.messageSubmit.emit(value);
     this.onCreatePosts({
-      userId: 1,
+      userId: '1',
       text: value,
       dateCreated: new Date(),
     });

@@ -22,3 +22,4 @@ C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Core\bin\Debug\netc
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Core\bin\Debug\netcoreapp3.1\Data.dll
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Core\bin\Debug\netcoreapp3.1\Data.pdb
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Core\obj\Debug\netcoreapp3.1\Core.csproj.CopyComplete
+C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Core\obj\Debug\netcoreapp3.1\Core.csproj.AssemblyReference.cache

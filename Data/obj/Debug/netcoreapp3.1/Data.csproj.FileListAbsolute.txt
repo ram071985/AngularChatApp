@@ -22,3 +22,4 @@ C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Data\obj\Debug\netc
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Data\obj\Debug\netcoreapp3.1\Data.dll
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Data\obj\Debug\netcoreapp3.1\Data.pdb
 C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
+C:\Users\reid.muchow\Desktop\PracticeProjects\AngularChatApp\Data\obj\Debug\netcoreapp3.1\Data.csproj.AssemblyReference.cache
