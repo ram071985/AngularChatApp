@@ -3,6 +3,7 @@ import { MessageService } from '../message.service';
 import { Message } from '../../models/message.model';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../../shared/security/security.service';
 import { AppUserAuth } from '../../security/app-user-auth';
 @Component({
@@ -26,7 +27,8 @@ export class MessageBoxComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private securityService: SecurityService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class MessageBoxComponent implements OnInit {
     this.securityService.logout();
     this.securityObject = this.securityService.securityObject;
     localStorage.removeItem("AuthObject");
+    this.router.navigateByUrl('auth');
   }
   // clearValues() {
   //   this.messageInputText = '';
