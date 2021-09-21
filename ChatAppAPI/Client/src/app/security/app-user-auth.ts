@@ -1,12 +1,11 @@
 import { UserAuthBase } from '../shared/security/user-auth-base';
+import { AppUserClaim } from './app-user-claim';
 
 export class AppUserAuth extends UserAuthBase {
-  canAccessChat: boolean = false;
+  claims: AppUserClaim[] = [];
 
   init(): void {
     super.init();
-
-    this.canAccessChat = false;
   }
 
   getValueOfProperty(obj: any, key: string): boolean {

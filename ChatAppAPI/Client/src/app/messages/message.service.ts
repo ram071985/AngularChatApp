@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { Message } from '../models/message.model';
-import { SecurityService } from '../shared/security/security.service';
 const API_ENDPOINT = 'messages/';
 
 @Injectable({
@@ -14,23 +13,13 @@ export class MessageService {
   messages: Message[] = [];
   apiUrl: string = 'https://localhost:5001/';
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-    }).set(
-      'Authorization',
-      'Bearer ' + this.securityService.securityObject.bearerToken
-    ),
-  };
-
   constructor(
-    private http: HttpClient,
-    private securityService: SecurityService
+    private http: HttpClient
   ) {
     this.apiUrl = this.apiUrl + API_ENDPOINT;
   }
   getMessages() {
-    return this.http.get<Message[]>(this.apiUrl, this.httpOptions).pipe(
+    return this.http.get<Message[]>(this.apiUrl).pipe(
       map((data: Message[]) => {
         return data;
       }),
@@ -42,7 +31,7 @@ export class MessageService {
 
   addMessage(form: NgForm): Observable<Message> {
     const value = form.value;
-    return this.http.post<Message>(this.apiUrl, this.httpOptions).pipe(
+    return this.http.post<Message>(this.apiUrl, value).pipe(
       tap((data: Message) => {
         data.text = value.messageInputText;
       })

@@ -18,18 +18,48 @@ export class SecurityService {
     this.apiUrl = this.apiUrl + API_ENDPOINT;
   }
 
+  hasClaim(claimType: any, claimValue?: any): boolean {
+    return this.isClaimValid(claimType, claimValue);
+  }
+
+  private isClaimValid(claimType: string, claimValue?: string): boolean {
+    let ret: boolean = false;
+    let auth: AppUserAuth | undefined;
+
+    // Retrieve security object
+    auth = this.securityObject;
+    if (auth) {
+      // See if the claim type has a value
+      // *hasClaim="'claimType:value'"
+      if (claimType.indexOf(':') >= 0) {
+        let words: string[] = claimType.split(':');
+        claimType = words[0].toLowerCase();
+        claimValue = words[1];
+      } else {
+        claimType = claimType.toLowerCase();
+        // Either get the claim value, or assume 'true'
+        claimValue = claimValue ? claimValue : 'true';
+      }
+      // Attempt to find the claim
+      ret =
+        auth.claims.find(
+          (c) => c.claimType.toLowerCase() == claimType && c.claimValue
+        ) != null;
+    }
+
+    return ret;
+  }
+
   login(entity: AppUser): Observable<AppUserAuth> {
     // Delete userId property for posting
     delete entity.userId;
 
-    return this.http
-      .post<AppUserAuth>(this.apiUrl + 'login', entity)
-      .pipe(
-        tap((res) => {
-          Object.assign(this.securityObject, res);
-        }),
+    return this.http.post<AppUserAuth>(this.apiUrl + 'login', entity).pipe(
+      tap((res) => {
+        Object.assign(this.securityObject, res);
+      })
       //  catchError(this.handleError())
-      );
+    );
   }
 
   // handleError<T>(operation = 'operation', msg = '', result?: T) {
