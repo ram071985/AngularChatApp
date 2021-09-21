@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChatAppAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "CanAccessChat")]
     [Route("[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase

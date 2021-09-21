@@ -27,9 +27,14 @@ namespace ChatAppAPI
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureJwt(services);
+            services.AddAuthorization(cfg =>
+            {
+                cfg.AddPolicy("CanAccessChat", c =>
+                c.RequireClaim("CanAccessChat", "true"));
+            });
             services.AddControllers();
             services.AddMvc()
-     .AddNewtonsoftJson(
+              .AddNewtonsoftJson(
           options =>
           {
               options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -76,16 +81,16 @@ namespace ChatAppAPI
                 app.UseDeveloperExceptionPage();
             }
 
-           
+
             app.UseAuthentication();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-         
+
             app.UseAuthorization();
 
-            
+
 
             //  Most likely a better alternative for handling CORS
 

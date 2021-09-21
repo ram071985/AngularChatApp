@@ -15,6 +15,7 @@ import { PortalComponent } from './portal/portal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { httpInterceptorProviders } from './shared/http-interceptors/interceptor-providers';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

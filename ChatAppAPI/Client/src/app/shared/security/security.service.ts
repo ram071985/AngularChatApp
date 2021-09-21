@@ -6,11 +6,6 @@ import { AppUser } from 'src/app/security/app-user';
 import { AppUserAuth } from 'src/app/security/app-user-auth';
 import { MessageService } from '../messaging/message.service';
 const API_ENDPOINT = 'security/';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Access-Control-Allow-Origin': 'http://localhost:4200',
-  }),
-};
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +23,7 @@ export class SecurityService {
     delete entity.userId;
 
     return this.http
-      .post<AppUserAuth>(this.apiUrl + 'login', entity, httpOptions)
+      .post<AppUserAuth>(this.apiUrl + 'login', entity)
       .pipe(
         tap((res) => {
           Object.assign(this.securityObject, res);
