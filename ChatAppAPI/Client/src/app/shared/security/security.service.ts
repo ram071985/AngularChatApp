@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { AppUser } from 'src/app/security/app-user';
@@ -13,6 +13,8 @@ const API_ENDPOINT = 'security/';
 export class SecurityService {
   securityObject: AppUserAuth = new AppUserAuth();
   apiUrl: string = 'https://localhost:5001/';
+  private hasChanged = new BehaviorSubject<number>(0);
+  securityReset = this.hasChanged.asObservable();
 
   constructor(private http: HttpClient, private msgService: MessageService) {
     this.apiUrl = this.apiUrl + API_ENDPOINT;
@@ -57,6 +59,9 @@ export class SecurityService {
     return this.http.post<AppUserAuth>(this.apiUrl + 'login', entity).pipe(
       tap((res) => {
         Object.assign(this.securityObject, res);
+
+        // Inform everyone the security object has changed
+        this.hasChanged.next(0);
       })
       //  catchError(this.handleError())
     );
@@ -84,5 +89,7 @@ export class SecurityService {
 
   logout(): void {
     this.securityObject.init();
+    // Inform everone the security object has changed
+    this.hasChanged.next(0);
   }
 }

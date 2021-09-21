@@ -8,9 +8,8 @@ namespace Data.Entities
     {
         public AppUserAuth() : base()
         {
-            CanAccessChat = false;
+
         }
 
-        public bool CanAccessChat { get; set; }
     }
 }

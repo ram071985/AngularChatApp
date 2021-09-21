@@ -23,7 +23,6 @@ namespace ChatAppAPI.Controllers
         }
 
         [HttpGet]
-        
         public IActionResult GetMessages()
         {
             try

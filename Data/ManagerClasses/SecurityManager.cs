@@ -56,26 +56,10 @@ namespace Data.ManagerClasses
             _auth.IsAuthenticated = true;
 
             // Get all claims for this user
-            claims = GetUserClaims(userId);
-
-            // Loop through all claims and 
-            // set properties of user object
-            foreach (UserClaim claim in claims)
-            {
-                try
-                {
-                    // Use reflection to set property
-                    _authType.GetProperty(claim.ClaimType)
-                        .SetValue(_auth, Convert.ToBoolean(claim.ClaimValue),
-                            null);
-                }
-                catch (Exception ex)
-                {
-                }
-            }
+            _auth.Claims = GetUserClaims(userId);
 
             // Create JWT Bearer Token
-            _auth.BearerToken = BuildJwtToken(claims, username);
+            _auth.BearerToken = BuildJwtToken(_auth.Claims, username);
 
             return _auth;
         }
