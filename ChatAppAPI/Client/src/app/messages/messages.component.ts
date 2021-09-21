@@ -35,8 +35,9 @@ export class MessagesComponent implements OnInit {
     
   }
 
-  addMessage(newMessage: string) {
-    this.messageList.push(new Message('1', newMessage, new Date()));
+  addMessage(form: NgForm) {
+    this.messageService.addMessage(form)
+   // this.messageList.push(new Message('1', newMessage, new Date()));
   }
 
 

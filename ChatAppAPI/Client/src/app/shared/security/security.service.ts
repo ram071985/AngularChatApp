@@ -31,7 +31,6 @@ export class SecurityService {
       .post<AppUserAuth>(this.apiUrl + 'login', entity, httpOptions)
       .pipe(
         tap((res) => {
-          console.log(res);
           Object.assign(this.securityObject, res);
         }),
       //  catchError(this.handleError())

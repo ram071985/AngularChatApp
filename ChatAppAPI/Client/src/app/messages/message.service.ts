@@ -40,9 +40,16 @@ export class MessageService {
     );
   }
 
-  addMessage(form: NgForm) {
-    console.log(this.messages);
+  addMessage(form: NgForm): Observable<Message> {
     const value = form.value;
-    this.messages.push(new Message('1', value.messageInputText, new Date()));
+    return this.http.post<Message>(this.apiUrl, this.httpOptions).pipe(
+      tap((data: Message) => {
+        data.text = value.messageInputText;
+      })
+    );
+
+    // console.log(this.messages);
+    // const value = form.value;
+    // this.messages.push(new Message('1', value.messageInputText, new Date()));
   }
 }
