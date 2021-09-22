@@ -32,7 +32,9 @@ namespace Data.ManagerClasses
 
             try
             {
-                list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && u.Password.ToLower() == password.ToLower()).ToList();
+                var passwordHash = _db.UserBases.First(x => x.Username == username);
+                var verify = BCrypt.Net.BCrypt.Verify(password, passwordHash.Password);
+                list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && verify).ToList();
 
                 if (list.Count() > 0)
                 {

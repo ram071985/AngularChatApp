@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../models/message.model';
+import { MessageReturn } from '../models/message-return.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 import { MessageService } from './message.service';
@@ -11,7 +12,7 @@ import { SecurityService } from '../shared/security/security.service';
   styleUrls: ['./messages.component.scss'],
 })
 export class MessagesComponent implements OnInit {
-  messageList: Message[] = [];
+  messageReturnList: MessageReturn[] = [];
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,14 +24,13 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMessages();
-    console.log(this.messageList)
   }
 
   getMessages() {
   //  console.log(this.messageService.getMessages())
-  return this.messageService.getMessages().subscribe((data: Message[]) => {
+  return this.messageService.getMessages().subscribe((data: MessageReturn[]) => {
      console.log(data);
-     this.messageList = data;
+     this.messageReturnList = data;
    });
     
   }

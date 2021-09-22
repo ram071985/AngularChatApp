@@ -26,11 +26,13 @@ namespace ChatAppAPI.Controllers
         {
             try
             {
-                var user = new User();
+                var user = new UserBase();
+                string passwordHash = BCrypt.Net.BCrypt.HashPassword(userModel.Password);
+
                 user.Username = userModel.Username;
-                user.Password = userModel.Password;
+                user.Password = passwordHash;
                 user.CreatedDate = DateTime.Now;
-             //   _db.Users.Add(user);
+                _db.UserBases.Add(user);
                 _db.SaveChanges();
 
                 return Ok(user);

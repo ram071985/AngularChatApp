@@ -25,10 +25,23 @@ namespace ChatAppAPI.Controllers
         [HttpGet]
         public IActionResult GetMessages()
         {
+
+            var messageReturn = new List<MessageReturnObject>();
+            var users = _db.UserBases.ToList();
+            var messages = _db.Messages.ToList();
             try
             {
-                var response = _db.Messages.ToList();
-                return Ok(response);
+                // var test = from m in messages join 
+                messageReturn = (from m in messages
+                           join u in users
+                           on m.UserId equals u.UserId
+                           select new MessageReturnObject
+                           {
+                               Username = u.Username,
+                               Text = m.Text,
+                               CreatedDate = m.CreatedDate
+                           }).ToList();
+                return Ok(messageReturn);
             }
             catch (Exception ex)
             {
@@ -41,6 +54,8 @@ namespace ChatAppAPI.Controllers
    
         public IActionResult AddMessage([FromBody] MessageModel messageModel)
         {
+
+          
             try
             {
                 var message = new Message();
@@ -56,6 +71,13 @@ namespace ChatAppAPI.Controllers
             {
                 return BadRequest(ex);
             }
+        }
+
+        public class MessageReturnObject
+        {
+            public string Username { get; set; }
+            public string Text { get; set; }
+            public DateTime CreatedDate { get; set; }
         }
     }
 }

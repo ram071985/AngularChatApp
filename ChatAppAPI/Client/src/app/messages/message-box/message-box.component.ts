@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../../shared/security/security.service';
 import { AppUserAuth } from '../../security/app-user-auth';
+import { MessageReturn } from 'src/app/models/message-return.model';
 @Component({
   selector: 'app-message-box',
   templateUrl: './message-box.component.html',
@@ -15,7 +16,7 @@ import { AppUserAuth } from '../../security/app-user-auth';
 export class MessageBoxComponent implements OnInit {
   securityObject: AppUserAuth | undefined;
 
-  @Input() messageList: Message[] = [];
+  @Input() messageReturnList: MessageReturn[] = [];
   @Output() messageSubmit = new EventEmitter<string>();
 
   httpOptions = {

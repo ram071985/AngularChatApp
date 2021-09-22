@@ -1,7 +1,7 @@
 <a href="#" (click)="logout()">LogOut</a>
 <div class="message-box container">
-  <div *ngFor="let message of messageList">
-    <h5 id="username-text"></h5>
+  <div *ngFor="let message of messageReturnList">
+    <h5 id="username-text">{{ message.username }}</h5>
     <h5>{{ message.text }}</h5>
   </div>
 </div>

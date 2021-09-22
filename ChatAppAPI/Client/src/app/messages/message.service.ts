@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { Message } from '../models/message.model';
+import { MessageReturn } from '../models/message-return.model';
 const API_ENDPOINT = 'messages/';
 
 @Injectable({
@@ -19,8 +20,8 @@ export class MessageService {
     this.apiUrl = this.apiUrl + API_ENDPOINT;
   }
   getMessages() {
-    return this.http.get<Message[]>(this.apiUrl).pipe(
-      map((data: Message[]) => {
+    return this.http.get<MessageReturn[]>(this.apiUrl).pipe(
+      map((data: MessageReturn[]) => {
         return data;
       }),
       catchError((err) => {

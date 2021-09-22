@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AaRGu9XKhg3qeOBpxV968shxbNUQxCfFeiUuiQXfmzq1vr2NOrvXNwGlGCE2M8+V9q/dhtNYrJPfE3SbuOHtHA==",
+  "dgSpecHash": "raqzPdMTJpesoQnHL19kXZ4Ox48GdCiawui72le6p4f1oOk0xp7kmq/RCAQLNTT6ns1ui/EjXOPfBcuFmXUACA==",
   "success": true,
   "projectFilePath": "C:\\Users\\reid.muchow\\Desktop\\PracticeProjects\\AngularChatApp\\Core\\Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\reid.muchow\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\reid.muchow\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
