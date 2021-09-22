@@ -7,7 +7,7 @@
       <h1 class="log-in-text">{{ isLoginMode ? "Sign In" : "Sign Up" }}</h1>
 
       <form
-        (ngSubmit)="login(authForm)"
+        (ngSubmit)="onSubmit(authForm)"
         #authForm="ngForm"
         class="example-form"
       >

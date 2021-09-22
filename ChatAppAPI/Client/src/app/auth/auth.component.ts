@@ -45,23 +45,30 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  login(form: NgForm) {
+  onSubmit(form: NgForm) {
+    const usernameValue = form.value.usernameInput;
+    const passwordValue = form.value.passwordInput;
     if (!form.valid) {
       return;
     }
-    const usernameValue = form.value.usernameInput;
-    const passwordValue = form.value.passwordInput;
-    this.securityObject?.init();
-    this.securityService
-      .login({ username: usernameValue, password: passwordValue })
-      .subscribe((res) => {
-        localStorage.setItem('AuthObject', JSON.stringify(res));
-        this.securityObject = res;
+    if (this.isLoginMode) {
+     
+      this.securityObject?.init();
+      this.securityService
+        .login({ username: usernameValue, password: passwordValue })
+        .subscribe((res) => {
+          localStorage.setItem('AuthObject', JSON.stringify(res));
+          this.securityObject = res;
 
-        if (this.returnUrl) {
-          this.router.navigateByUrl(this.returnUrl);
-        }
-      });
+          if (this.returnUrl) {
+            this.router.navigateByUrl(this.returnUrl);
+          }
+        });
+    } else {
+      this.authService.signup({ username: usernameValue, password: passwordValue })
+      this.isLoginMode = true;
+    }
+    form.reset();
   }
 
   logout(): void {
@@ -70,31 +77,31 @@ export class AuthComponent implements OnInit {
     localStorage.removeItem('AuthObject');
   }
 
-  onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
-    }
-    const usernameValue = form.value.usernameInput;
-    const passwordValue = form.value.passwordInput;
-    // this.createUser({
-    //   username: usernameValue,
-    //   password: passwordValue,
-    // });
+  // onSubmit(form: NgForm) {
+  //   if (!form.valid) {
+  //     return;
+  //   }
+  //   const usernameValue = form.value.usernameInput;
+  //   const passwordValue = form.value.passwordInput;
+  //   // this.createUser({
+  //   //   username: usernameValue,
+  //   //   password: passwordValue,
+  //   // });
 
-    // if (this.isLoginMode) {
-    // } else {
-    //   this.authService
-    //     .signup({
-    //       username: usernameValue,
-    //       password: passwordValue,
-    //     })
-    //     .subscribe((resData) => {
-    //       console.log(resData);
-    //     });
-    // }
+  //   // if (this.isLoginMode) {
+  //   // } else {
+  //   //   this.authService
+  //   //     .signup({
+  //   //       username: usernameValue,
+  //   //       password: passwordValue,
+  //   //     })
+  //   //     .subscribe((resData) => {
+  //   //       console.log(resData);
+  //   //     });
+  //   // }
 
-    form.reset();
-  }
+  //   form.reset();
+  // }
 
   // createUser(user: User) {
   //   console.log(user);

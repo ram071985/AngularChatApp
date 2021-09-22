@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../models/message.model';
+import { interval } from 'rxjs';
 import { MessageReturn } from '../models/message-return.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
@@ -23,13 +24,13 @@ export class MessagesComponent implements OnInit {
   constructor(private http: HttpClient, private securityService: SecurityService, private messageService: MessageService) {}
 
   ngOnInit(): void {
-    this.getMessages();
+    setInterval(() => {
+      this.getMessages()
+    }, 3000);
   }
 
   getMessages() {
-  //  console.log(this.messageService.getMessages())
   return this.messageService.getMessages().subscribe((data: MessageReturn[]) => {
-     console.log(data);
      this.messageReturnList = data;
    });
     

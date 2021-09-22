@@ -9,7 +9,7 @@ export class AuthService {
     this.http
       .post<User>('https://localhost:5001/Users', user)
       .subscribe((response) => {
-        console.log('User register', response);
+        return response;
       });
   }
 }

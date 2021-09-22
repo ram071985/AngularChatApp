@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, interval } from 'rxjs';
 import { Message } from '../models/message.model';
 import { MessageReturn } from '../models/message-return.model';
 const API_ENDPOINT = 'messages/';
