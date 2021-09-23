@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+} from '@angular/core';
 import { MessageService } from '../message.service';
 import { Message } from '../../models/message.model';
 import { NgForm } from '@angular/forms';
@@ -15,8 +22,9 @@ import { MessageReturn } from 'src/app/models/message-return.model';
   providers: [],
 })
 export class MessageBoxComponent implements OnInit {
+  @ViewChild('f') messageForm: NgForm;
   securityObject: AppUserAuth | undefined;
-  messageInputText = "";
+  messageInputText = '';
 
   @Input() messageReturnList: MessageReturn[] = [];
   @Output() messageSubmit = new EventEmitter<string>();
@@ -32,22 +40,23 @@ export class MessageBoxComponent implements OnInit {
     private securityService: SecurityService,
     private http: HttpClient,
     private router: Router
-  ) {
-  }
+  ) {}
 
-  ngOnInit(): void {
-    console.log(this.messageInputText)
-    
-  }
+  ngOnInit(): void {}
 
   addMessage(form: NgForm) {
     const value = form.value.messageInputText;
 
     this.messageSubmit.emit(value);
     this.messageService.addMessage(form).subscribe((data: MessageReturn) => {
-    console.log(data)
-    this.messageReturnList.push({username: data.username, text: data.text, dateCreated: data.dateCreated})
+      console.log(data);
+      this.messageReturnList.push({
+        username: data.username,
+        text: data.text,
+        dateCreated: data.dateCreated,
+      });
     });
+    this.messageForm.reset();
   }
 
   logout(): void {
@@ -57,6 +66,6 @@ export class MessageBoxComponent implements OnInit {
     this.router.navigateByUrl('auth');
   }
   clearValues() {
-    this.messageInputText = '';
+    this.messageForm.reset();
   }
 }

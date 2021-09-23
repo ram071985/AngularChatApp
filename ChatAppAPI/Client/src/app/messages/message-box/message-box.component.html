@@ -7,12 +7,12 @@
 </div>
 <div class="input-box container">
   <form (ngSubmit)="addMessage(f)" #f="ngForm">
-    <!-- <mat-form-field class="text-input" appearance="fill">
-      <mat-label>What's on your mind?</mat-label> -->
+    <mat-form-field class="text-input" appearance="fill">
+      <mat-label>What's on your mind?</mat-label>
       <input matInput type="text" name="messageInputText" ngModel />
-      <!-- <button matSuffix mat-icon-button aria-label="Clear">
+      <button type="button" (click)="clearValues()" matSuffix mat-icon-button aria-label="Clear">
         <mat-icon >close</mat-icon>
       </button>
-    </mat-form-field> -->
+    </mat-form-field>
   </form>
 </div>

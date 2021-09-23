@@ -14,6 +14,7 @@ import { SecurityService } from '../shared/security/security.service';
 })
 export class MessagesComponent implements OnInit {
   messageReturnList: MessageReturn[] = [];
+  messageInputText: string = "";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -27,6 +28,8 @@ export class MessagesComponent implements OnInit {
     setInterval(() => {
       this.getMessages()
     }, 2000);
+    this.messageInputText = "";
+
   }
 
   getMessages() {
