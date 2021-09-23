@@ -26,7 +26,7 @@ export class MessagesComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       this.getMessages()
-    }, 3000);
+    }, 2000);
   }
 
   getMessages() {
@@ -36,10 +36,13 @@ export class MessagesComponent implements OnInit {
     
   }
 
-  addMessage(form: NgForm) {
-    this.messageService.addMessage(form)
-   // this.messageList.push(new Message('1', newMessage, new Date()));
-  }
+  // addMessage(form: NgForm) {
+  //   this.messageService.addMessage(form).subscribe((data: Message) => {
+  //     console.log(data)
+  //    // this.messageReturnList.push({})
+  //   })
+  //  // this.messageList.push(new Message('1', newMessage, new Date()));
+  // }
 
 
 }

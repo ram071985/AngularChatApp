@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SecurityService } from '../../shared/security/security.service';
 import { AppUserAuth } from '../../security/app-user-auth';
 import { MessageReturn } from 'src/app/models/message-return.model';
+
 @Component({
   selector: 'app-message-box',
   templateUrl: './message-box.component.html',
@@ -15,6 +16,7 @@ import { MessageReturn } from 'src/app/models/message-return.model';
 })
 export class MessageBoxComponent implements OnInit {
   securityObject: AppUserAuth | undefined;
+  messageInputText = "";
 
   @Input() messageReturnList: MessageReturn[] = [];
   @Output() messageSubmit = new EventEmitter<string>();
@@ -30,42 +32,31 @@ export class MessageBoxComponent implements OnInit {
     private securityService: SecurityService,
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    //  this.messages = this.messageService.messages;
-    // this.clearValues();
+    console.log(this.messageInputText)
+    
   }
 
   addMessage(form: NgForm) {
     const value = form.value.messageInputText;
-    this.messageSubmit.emit(value);
-    this.onCreatePosts({
-      userId: '1',
-      text: value,
-      dateCreated: new Date(),
-    });
-  }
 
-  onCreatePosts(message: Message) {
-    this.http
-      .post<Message>(
-        'https://localhost:5001/Messages',
-        message,
-        this.httpOptions
-      )
-      .subscribe((response) => {
-        console.log("Message created", response);
-      });
+    this.messageSubmit.emit(value);
+    this.messageService.addMessage(form).subscribe((data: MessageReturn) => {
+    console.log(data)
+    this.messageReturnList.push({username: data.username, text: data.text, dateCreated: data.dateCreated})
+    });
   }
 
   logout(): void {
     this.securityService.logout();
     this.securityObject = this.securityService.securityObject;
-    localStorage.removeItem("AuthObject");
+    localStorage.removeItem('AuthObject');
     this.router.navigateByUrl('auth');
   }
-  // clearValues() {
-  //   this.messageInputText = '';
-  // }
+  clearValues() {
+    this.messageInputText = '';
+  }
 }

@@ -30,11 +30,18 @@ export class MessageService {
     );
   }
 
-  addMessage(form: NgForm): Observable<Message> {
-    const value = form.value;
-    return this.http.post<Message>(this.apiUrl, value).pipe(
-      tap((data: Message) => {
-        data.text = value.messageInputText;
+  addMessage(form: NgForm) {
+    const userObject = JSON.parse(localStorage.getItem('AuthObject')!);
+    
+    const value = { userId: userObject.userId, text: form.value.messageInputText };
+    console.log(value);
+    return this.http.post<MessageReturn>(this.apiUrl, value).pipe(
+      map((data: MessageReturn) => {
+        return {
+          username: userObject.userName,
+          text: data.text,
+          dateCreated: data.dateCreated
+        }
       })
     );
 

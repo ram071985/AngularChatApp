@@ -59,9 +59,9 @@ namespace ChatAppAPI.Controllers
             try
             {
                 var message = new Message();
-                message.UserId = new Guid("1");
+                message.UserId = messageModel.UserId;
                 message.Text = messageModel.Text;
-           //     message.DateCreated = DateTime.Now;
+                message.CreatedDate = DateTime.Now;
                 _db.Messages.Add(message);
                 _db.SaveChanges();
 
