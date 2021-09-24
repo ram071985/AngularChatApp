@@ -39,6 +39,13 @@ namespace ChatAppAPI.Controllers
             if (auth.IsAuthenticated)
             {
                 ret = StatusCode(StatusCodes.Status200OK, auth);
+                var userActive = new UserBase
+                {
+                    Active = "true"
+                };
+
+                _db.UserBases.Add(userActive);
+                _db.SaveChanges();
 
             }
             else
