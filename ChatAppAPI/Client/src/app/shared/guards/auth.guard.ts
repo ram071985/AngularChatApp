@@ -29,13 +29,18 @@ export class AuthGuard implements CanActivate {
     let claimType: string = route.data['claimType'];
 
     let auth = localStorage.getItem('AuthObject');
+    console.log("auth object", auth)
     if (auth) {
       Object.assign(this.securityService.securityObject, JSON.parse(auth));
     }
+
+    let claimValue = this.securityService.securityObject;
+    // something in here
     let isAuth =
       this.securityService.securityObject.isAuthenticated &&
-      this.securityService.hasClaim(claimType);
-
+      this.securityService.hasClaim(claimType, claimValue);
+      //
+    console.log(isAuth)
     if (isAuth) {
       return true;
     } else {

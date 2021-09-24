@@ -19,7 +19,7 @@ namespace Data.Entities
         [Required()]
         public string Password { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string Active { get; set; }
+ //       public string Active { get; set; }
 
     }
 }

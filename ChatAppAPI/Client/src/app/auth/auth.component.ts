@@ -46,6 +46,7 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(this.isLoginMode)
     const usernameValue = form.value.usernameInput;
     const passwordValue = form.value.passwordInput;
     if (!form.valid) {
@@ -56,10 +57,10 @@ export class AuthComponent implements OnInit {
       this.securityObject?.init();
       this.securityService
         .login({ username: usernameValue, password: passwordValue })
-        .subscribe((res) => {
-          localStorage.setItem('AuthObject', JSON.stringify(res));
+        .subscribe((res: any) => {
+          console.log("auth component res", res)
+          localStorage.setItem('AuthObject', JSON.stringify(res.value));
           this.securityObject = res;
-
           if (this.returnUrl) {
             this.router.navigateByUrl(this.returnUrl);
           }
@@ -68,7 +69,7 @@ export class AuthComponent implements OnInit {
       this.authService.signup({ username: usernameValue, password: passwordValue })
       this.isLoginMode = true;
     }
-    form.reset();
+  //  form.reset();
   }
 
   logout(): void {

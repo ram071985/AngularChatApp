@@ -36,24 +36,28 @@ namespace ChatAppAPI.Controllers
             SecurityManager mgr = new SecurityManager(_db, auth, _settings);
 
             auth = (AppUserAuth)mgr.ValidateUser(user.Username, user.Password);
-            if (auth.IsAuthenticated)
+            try
             {
-                ret = StatusCode(StatusCodes.Status200OK, auth);
-                var userActive = new UserBase
+                if (auth.IsAuthenticated)
                 {
-                    Active = "true"
-                };
+                    ret = StatusCode(StatusCodes.Status200OK, auth);
 
-                _db.UserBases.Add(userActive);
-                _db.SaveChanges();
+                    //var userRecord = _db.UserBases.First(x => x.Username == user.Username);
+                    //userRecord.Active = "true";
+                    //_db.SaveChanges();
 
+                }
+                else
+                {
+                    ret = StatusCode(StatusCodes.Status404NotFound, "Invalid Username/Password");
+                }
+
+                return Ok(ret);
             }
-            else
+            catch (Exception ex)
             {
-                ret = StatusCode(StatusCodes.Status404NotFound, "Invalid Username/Password");
+                return BadRequest(ex);
             }
-
-            return ret;
 
         }
     }
