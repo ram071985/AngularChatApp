@@ -29,10 +29,8 @@ export class SecurityService {
     let auth: AppUserAuth | undefined;
 
     // Retrieve security object
-    console.log("security service securityObject", this.securityObject)
     auth = this.securityObject;
-    
-    console.log("security service claimType", claimType)
+
     if (auth) {
       // See if the claim type has a value
       // *hasClaim="'claimType:value'"
@@ -51,7 +49,6 @@ export class SecurityService {
           (c) => c.claimType.toLowerCase() == claimType && c.claimValue
         ) != null;
     }
-    console.log("is claim valid", ret)
     return ret;
   }
 
@@ -61,7 +58,6 @@ export class SecurityService {
 
     return this.http.post<AppUserAuth>(this.apiUrl + 'login', entity).pipe(
       tap((res) => {
-        console.log("security service",res)
         Object.assign(this.securityObject, res);
 
         // Inform everyone the security object has changed
@@ -91,9 +87,18 @@ export class SecurityService {
   //   }
   // }
 
-  logout(): void {
-    this.securityObject.init();
-    // Inform everone the security object has changed
-    this.hasChanged.next(0);
+  logout(entity: AppUser) {
+    console.log('click');
+
+    return this.http.post<AppUser>(this.apiUrl + 'logout', entity).pipe(
+      tap((res) => {
+        //Inform everone the security object has changed
+        this.securityObject.init();
+
+        // Inform everyone the security object has changed
+        this.hasChanged.next(0);
+      })
+      //  catchError(this.handleError())
+    );
   }
 }

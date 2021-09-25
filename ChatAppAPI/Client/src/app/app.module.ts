@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { httpInterceptorProviders } from './shared/http-interceptors/interceptor-providers';
+import { UserListComponent } from './users/user-list/user-list.component';
 
 const appRoutes: Routes = [
   {
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     AppComponent,
     AuthComponent,
     UsersComponent,
+    UserListComponent,
     MessagesComponent,
     MessageBoxComponent,
     MessageInputComponent,

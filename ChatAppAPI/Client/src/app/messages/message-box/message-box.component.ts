@@ -10,7 +10,11 @@ import { MessageService } from '../message.service';
 import { Message } from '../../models/message.model';
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Router,
+} from '@angular/router';
 import { SecurityService } from '../../shared/security/security.service';
 import { AppUserAuth } from '../../security/app-user-auth';
 import { MessageReturn } from 'src/app/models/message-return.model';
@@ -60,7 +64,11 @@ export class MessageBoxComponent implements OnInit {
   }
 
   logout(): void {
-    this.securityService.logout();
+    let authObject = JSON.parse(localStorage.getItem('AuthObject')!);
+    const username: string = authObject.userName;
+    this.securityService.logout({ username: username, password: '' }).subscribe((data) => {
+      console.log(data)
+    });
     this.securityObject = this.securityService.securityObject;
     localStorage.removeItem('AuthObject');
     this.router.navigateByUrl('auth');

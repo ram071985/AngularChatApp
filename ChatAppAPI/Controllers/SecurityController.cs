@@ -42,9 +42,9 @@ namespace ChatAppAPI.Controllers
                 {
                     ret = StatusCode(StatusCodes.Status200OK, auth);
 
-                    //var userRecord = _db.UserBases.First(x => x.Username == user.Username);
-                    //userRecord.Active = "true";
-                    //_db.SaveChanges();
+                    var userRecord = _db.UserBases.First(x => x.Username == user.Username);
+                    userRecord.Active = "true";
+                    _db.SaveChanges();
 
                 }
                 else
@@ -59,6 +59,24 @@ namespace ChatAppAPI.Controllers
                 return BadRequest(ex);
             }
 
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout([FromBody] AppUser user)
+        {
+            try
+            {
+                var userRecord = _db.UserBases.First(x => x.Username == user.Username);
+                userRecord.Active = "false";
+                _db.SaveChanges();
+
+                return Ok(userRecord);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
     }
 }

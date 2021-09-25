@@ -21,6 +21,21 @@ namespace ChatAppAPI.Controllers
             _db = db;
         }
 
+        [HttpGet]
+        public IActionResult GetUsers()
+        {
+            try
+            {
+                var users = _db.UserBases.ToList();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
+
         [HttpPost]
         public IActionResult AddUser([FromBody] UserModel userModel)
         {
