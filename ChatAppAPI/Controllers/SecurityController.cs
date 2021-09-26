@@ -46,6 +46,8 @@ namespace ChatAppAPI.Controllers
                     userRecord.Active = "true";
                     _db.SaveChanges();
 
+
+
                 }
                 else
                 {

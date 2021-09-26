@@ -3,7 +3,7 @@ import { UserReturn } from '../../models/user-return.model';
 
 @Component({
     selector: 'app-user-list',
-    templateUrl: './users-list.component.html',
+    templateUrl: './user-list.component.html',
     styleUrls: ['./user-list.component.scss']
 })
 

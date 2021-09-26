@@ -3,7 +3,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserReturn } from '../models/user-return.model';
-const API_ENDPOINT = 'user/';
+const API_ENDPOINT = 'users/';
 
 @Injectable({
   providedIn: 'root',
