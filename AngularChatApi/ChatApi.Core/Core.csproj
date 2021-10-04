@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\ChatApi.Data\Data.csproj" />
   </ItemGroup>
 
 </Project>

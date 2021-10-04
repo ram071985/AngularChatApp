@@ -34,9 +34,9 @@ namespace Data.ManagerClasses
             {
                 var passwordHash = _db.UserBases.First(x => x.Username == username);
                 var verify = BCrypt.Net.BCrypt.Verify(password, passwordHash.Password);
-                list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && verify).ToList();git
+                list = _db.UserBases.Where(u => u.Username.ToLower() == username.ToLower() && verify).ToList();
 
-                if (list.Count() > 0)
+                if (list.Count > 0)
                 {
                     _auth = BuildUserAuthObject(list[0].UserId, username);
                 }
